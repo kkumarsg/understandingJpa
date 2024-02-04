@@ -2,15 +2,14 @@ package com.example.undersstandingmapping.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
 public class Student {
 
     @Id
@@ -18,6 +17,10 @@ public class Student {
 
     private String name;
     private String psp;
+
+    public Student(){
+
+    }
 
 //    @OneToMany(mappedBy = "student")
 //    private List<Laptop> laptops;
