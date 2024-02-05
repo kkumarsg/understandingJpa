@@ -5,9 +5,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 @Getter
 @Setter
 @Entity
