@@ -3,15 +3,14 @@ package com.example.undersstandingmapping.controllers;
 import com.example.undersstandingmapping.models.Student;
 import com.example.undersstandingmapping.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// to mark this class as a controller.
-// and return the output as json directly
-@RestController
-public class StudentController {
+    // to mark this class as a controller.
+    // and return the output as json directly
+    @RestController
+    public class StudentController {
 
     // not a good idea to use repositories inside controllers
 
@@ -26,6 +25,21 @@ public class StudentController {
     public List<Student> getStudent(){
 
         return studentRepository.findAll();
+    }
+
+    //New api which allow client to create data of student via postman
+    @RequestMapping(method = RequestMethod.PUT, value = "/create")
+    public Student createStudent(@RequestBody Student student){
+        return studentRepository.save(student);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
+    public void deleteStudent(@PathVariable Long id){
+            studentRepository.deleteById(id);
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "/getStudent")
+     public Student gerStudent(@RequestParam String name){
+        return studentRepository.findByName(name);
     }
 
     // Transactions 1 and 2 completely.
